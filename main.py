@@ -1096,7 +1096,8 @@ async def txt_handler(bot: Client, m: Message):
                 keys_string = " ".join([f"--key {key}" for key in keys])
 
             elif "classplusapp" in url:
-                signed_api = f"https://cpapi-ytas.onrender.com/extract_keys?url={url}@bots_updatee&user_id={user_id}"
+             #   signed_api = f"https://cpapi-ytas.onrender.com/extract_keys?url={url}@bots_updatee&user_id={user_id}"
+                signed_api = f"https://boss-cp-api-64efd63104a2.herokuapp.com/resolve?url={url}"
                 response = requests.get(signed_api, timeout=20)
                 url = response.text.strip()
                 url = response.json()['url']  
@@ -1469,7 +1470,8 @@ async def text_handler(bot: Client, m: Message):
                 keys_string = " ".join([f"--key {key}" for key in keys])
 
             elif "classplusapp" in url:
-                signed_api = f"https://cpapi-rjbs.onrender.com/extract_keys?url={url}@bots_updatee&user_id={user_id}"
+         #       signed_api = f"https://cpapi-rjbs.onrender.com/extract_keys?url={url}@bots_updatee&user_id={user_id}"
+                signed_api = f"https://boss-cp-api-64efd63104a2.herokuapp.com/resolve?url={url}"
                 response = requests.get(signed_api, timeout=20)
                 #url = response.text.strip()
                 url = response.json()['url']  
@@ -1511,7 +1513,10 @@ async def text_handler(bot: Client, m: Message):
                 ytf = f"b[height<={raw_text2}]/bv[height<={raw_text2}]+ba/b/bv+ba"
            
             if "jw-prod" in url:
+              #  cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
+                url = url.replace("https://apps-s3-jw-prod.utkarshapp.com/admin_v1/file_library/videos","https://d1q5ugnejk3zoi.cloudfront.net/ut-production-jw/admin_v1/file_library/videos")
                 cmd = f'yt-dlp -o "{name}.mp4" "{url}"'
+                
             elif "webvideos.classplusapp." in url:
                cmd = f'yt-dlp --add-header "referer:https://web.classplusapp.com/" --add-header "x-cdn-tag:empty" -f "{ytf}" "{url}" -o "{name}.mp4"'
             elif "youtube.com" in url or "youtu.be" in url:
